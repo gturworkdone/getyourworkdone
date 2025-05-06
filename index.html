@@ -5,30 +5,152 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Get Your Work Done</title>
   <style>
-    :root { --bg: #121212; --fg: #e0e0e0; --accent: #03dac6; --card-bg: #1e1e1e; }
-    body { margin: 0; font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--fg); overflow-x: hidden; }
-    nav { position: fixed; top: 0; width: 100%; background: var(--card-bg); display: flex; justify-content: center; padding: 1rem; z-index: 100; }
-    nav a { color: var(--fg); margin: 0 1rem; text-decoration: none; font-weight: 500; }
-    header { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 2rem; }
-    header h1 { font-size: 3rem; margin-bottom: 0.5rem; }
-    header p { font-size: 1.2rem; max-width: 600px; }
-    section { padding: 4rem 2rem; max-width: 1000px; margin: auto; }
-    section h2 { text-align: center; margin-bottom: 2rem; }
-    .talents { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 1.5rem; }
-    .talent-card { background: var(--card-bg); border-radius: 8px; padding: 1rem; text-align: center; cursor: pointer; transition: transform 0.2s; }
-    .talent-card:hover { transform: translateY(-5px); }
-    .talent-card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 0.5rem; }
-    .talent-card h4 { margin: 0.5rem 0 0.25rem; }
-    .talent-card p { margin: 0; font-size: 0.9rem; color: #aaa; }
-    .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; padding: 1rem; }
-    .modal.open { display: flex; }
-    .modal-content { background: var(--card-bg); padding: 2rem; border-radius: 8px; max-width: 600px; width: 100%; max-height: 90%; overflow-y: auto; position: relative; }
-    .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; color: var(--fg); cursor: pointer; }
-    .modal-content h3 { margin-top: 0; }
-    .modal-content ul { padding-left: 1.2rem; }
-    .contact-info { text-align: center; margin-top: 3rem; }
-    .contact-info a { color: var(--accent); text-decoration: none; margin: 0 0.5rem; font-weight: bold; }
-    .btn-linkedin { display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; background: var(--accent); color: var(--bg); border-radius: 5px; text-decoration: none; }
+    :root {
+      --bg: #121212;
+      --fg: #e0e0e0;
+      --accent: #03dac6;
+      --card-bg: #1e1e1e;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      overflow-x: hidden;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--card-bg);
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 100;
+    }
+    nav a {
+      color: var(--fg);
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    header {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 2rem;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      max-width: 600px;
+    }
+    section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    section h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .talents {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+      gap: 1.5rem;
+    }
+    .talent-card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .talent-card:hover {
+      transform: translateY(-5px);
+    }
+    .talent-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.5rem;
+    }
+    .talent-card h4 {
+      margin: 0.5rem 0 0.25rem;
+    }
+    .talent-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal.open {
+      display: flex;
+    }
+    .modal-content {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90%;
+      overflow-y: auto;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--fg);
+      cursor: pointer;
+    }
+    .modal-content h3 {
+      margin-top: 0;
+    }
+    .modal-content ul {
+      padding-left: 1.2rem;
+    }
+    .contact-info {
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .contact-info a {
+      color: var(--accent);
+      text-decoration: none;
+      margin: 0 0.5rem;
+      font-weight: bold;
+    }
+    .btn-linkedin {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: 5px;
+      text-decoration: none;
+    }
     @media (max-width: 600px) {
       nav { padding: 0.5rem; }
       header h1 { font-size: 2.5rem; }
@@ -54,7 +176,6 @@
     <div class="talents" id="talentGrid"></div>
   </section>
 
-  <!-- Talent Detail Modal -->
   <div class="modal" id="talentModal">
     <div class="modal-content">
       <button class="modal-close" id="modalClose">×</button>
@@ -86,22 +207,60 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     const torus = new THREE.Mesh(new THREE.TorusKnotGeometry(8,2,100,16), new THREE.MeshStandardMaterial({color:0x03dac6,metalness:0.4,roughness:0.6}));
     scene.add(torus);
-    const light = new THREE.PointLight(0xffffff,1); light.position.set(10,10,10); scene.add(light);
+    const light = new THREE.PointLight(0xffffff, 1);
+    light.position.set(10, 10, 10);
+    scene.add(light);
     camera.position.z = 30;
-    (function animate(){ requestAnimationFrame(animate); torus.rotation.x+=0.005; torus.rotation.y+=0.005; renderer.render(scene,camera); })();
-    window.addEventListener('resize', ()=>{ renderer.setSize(window.innerWidth,window.innerHeight); camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); });
+    (function animate() {
+      requestAnimationFrame(animate);
+      torus.rotation.x += 0.005;
+      torus.rotation.y += 0.005;
+      renderer.render(scene, camera);
+    })();
+    window.addEventListener('resize', () => {
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+    });
 
-    // Talent Data (local images)
-    const talents = [];
-    for(let i=1; i<=5; i++) {
-      talents.push({
-        name: `Freelancer ${i}`,
-        domain: ['Web Dev','Design','3D Animation','Data Science'][i%4],
-        img: `freelancer${i}.jpg`,
-        exp: `${1 + (i%5)} years in ${i%4===0 ? 'web development' : 'design projects'}`,
-        projects: [`Project A${i}`, `Project B${i}`, `Project C${i}`]
-      });
-    }
+    // Talents with JPEG images
+    const talents = [
+      {
+        name: "Freelancer 1",
+        domain: "Web Dev",
+        img: "https://images.unsplash.com/photo-1603415526960-f7e0328f6f5f?fit=crop&w=100&q=80",
+        exp: "2 years in web development",
+        projects: ["E-commerce Platform", "Portfolio Site", "Admin Dashboard"]
+      },
+      {
+        name: "Freelancer 2",
+        domain: "Design",
+        img: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?fit=crop&w=100&q=80",
+        exp: "3 years in design projects",
+        projects: ["Brand Identity", "Mobile UI", "Logo Collection"]
+      },
+      {
+        name: "Freelancer 3",
+        domain: "3D Animation",
+        img: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?fit=crop&w=100&q=80",
+        exp: "1 year in animation projects",
+        projects: ["Character Rigging", "Scene Modeling", "Short 3D Film"]
+      },
+      {
+        name: "Freelancer 4",
+        domain: "Data Science",
+        img: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?fit=crop&w=100&q=80",
+        exp: "4 years in data analysis",
+        projects: ["ML Model for Sales", "Customer Segmentation", "Stock Predictor"]
+      },
+      {
+        name: "Freelancer 5",
+        domain: "Web Dev",
+        img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?fit=crop&w=100&q=80",
+        exp: "5 years in web development",
+        projects: ["React Website", "Node.js Backend", "API Integrations"]
+      }
+    ];
 
     const grid = document.getElementById('talentGrid');
     const modal = document.getElementById('talentModal');
@@ -132,7 +291,9 @@
     }
 
     closeBtn.addEventListener('click', () => modal.classList.remove('open'));
-    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+    modal.addEventListener('click', e => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
   </script>
 </body>
 </html>

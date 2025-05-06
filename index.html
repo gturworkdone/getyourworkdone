@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Get Your Work Done</title>
-  <!-- Dark Theme & Responsive Styles -->
   <style>
     :root { --bg: #121212; --fg: #e0e0e0; --accent: #03dac6; --card-bg: #1e1e1e; }
-    body { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--fg); overflow-x: hidden; }
+    body { margin: 0; font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--fg); overflow-x: hidden; }
     nav { position: fixed; top: 0; width: 100%; background: var(--card-bg); display: flex; justify-content: center; padding: 1rem; z-index: 100; }
     nav a { color: var(--fg); margin: 0 1rem; text-decoration: none; font-weight: 500; }
     header { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 2rem; }
@@ -21,7 +20,6 @@
     .talent-card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 0.5rem; }
     .talent-card h4 { margin: 0.5rem 0 0.25rem; }
     .talent-card p { margin: 0; font-size: 0.9rem; color: #aaa; }
-    /* Modal */
     .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; padding: 1rem; }
     .modal.open { display: flex; }
     .modal-content { background: var(--card-bg); padding: 2rem; border-radius: 8px; max-width: 600px; width: 100%; max-height: 90%; overflow-y: auto; position: relative; }
@@ -31,7 +29,11 @@
     .contact-info { text-align: center; margin-top: 3rem; }
     .contact-info a { color: var(--accent); text-decoration: none; margin: 0 0.5rem; font-weight: bold; }
     .btn-linkedin { display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; background: var(--accent); color: var(--bg); border-radius: 5px; text-decoration: none; }
-    @media (max-width: 600px) { nav { padding: 0.5rem; } header h1 { font-size: 2.5rem; } section { padding: 2rem 1rem; } }
+    @media (max-width: 600px) {
+      nav { padding: 0.5rem; }
+      header h1 { font-size: 2.5rem; }
+      section { padding: 2rem 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -89,14 +91,14 @@
     (function animate(){ requestAnimationFrame(animate); torus.rotation.x+=0.005; torus.rotation.y+=0.005; renderer.render(scene,camera); })();
     window.addEventListener('resize', ()=>{ renderer.setSize(window.innerWidth,window.innerHeight); camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); });
 
-    // Talent Data
+    // Talent Data (local images)
     const talents = [];
-    for(let i=1;i<=5;i++) {
+    for(let i=1; i<=5; i++) {
       talents.push({
         name: `Freelancer ${i}`,
         domain: ['Web Dev','Design','3D Animation','Data Science'][i%4],
-        img: `https://via.placeholder.com/100?text=F${i}`,
-        exp: `${1 + (i%5)} years in ${i%4===0?'web development':'design projects'}`,
+        img: `freelancer${i}.jpg`,
+        exp: `${1 + (i%5)} years in ${i%4===0 ? 'web development' : 'design projects'}`,
         projects: [`Project A${i}`, `Project B${i}`, `Project C${i}`]
       });
     }
@@ -109,7 +111,7 @@
       const card = document.createElement('div');
       card.className = 'talent-card';
       card.innerHTML = `<img src="${t.img}" alt="${t.name}"><h4>${t.name}</h4><p>${t.domain}</p>`;
-      card.addEventListener('click', ()=> openModal(idx));
+      card.addEventListener('click', () => openModal(idx));
       grid.appendChild(card);
     });
 
@@ -121,11 +123,16 @@
       document.getElementById('modalExp').textContent = t.exp;
       const ul = document.getElementById('modalProjects');
       ul.innerHTML = '';
-      t.projects.forEach(p => { const li = document.createElement('li'); li.textContent = p; ul.appendChild(li); });
+      t.projects.forEach(p => {
+        const li = document.createElement('li');
+        li.textContent = p;
+        ul.appendChild(li);
+      });
       modal.classList.add('open');
     }
-    closeBtn.addEventListener('click', ()=> modal.classList.remove('open'));
-    modal.addEventListener('click', e => { if(e.target===modal) modal.classList.remove('open'); });
+
+    closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
   </script>
 </body>
 </html>
